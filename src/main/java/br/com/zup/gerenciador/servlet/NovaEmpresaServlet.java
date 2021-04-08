@@ -1,6 +1,8 @@
 package br.com.zup.gerenciador.servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,9 +22,18 @@ public class NovaEmpresaServlet extends HttpServlet {
 		System.out.println("Cadastrando nova empresa");
 		
 		String nomeEmpresa = request.getParameter("nome");
+		String dataEmpresa = request.getParameter("dataAbertura");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				
 		Empresa empresa = new Empresa();
 		empresa.setNome(nomeEmpresa);
-				
+		try {
+			empresa.setDataAbertura(sdf.parse(dataEmpresa));
+		} catch (ParseException e) {
+			throw new ServletException(e);
+		}
+		
 		Banco.adiciona(empresa);
 		
 		request.setAttribute("empresa", nomeEmpresa);
