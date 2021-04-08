@@ -28,6 +28,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 				
 		Empresa empresa = new Empresa();
 		empresa.setNome(nomeEmpresa);
+		
 		try {
 			empresa.setDataAbertura(sdf.parse(dataEmpresa));
 		} catch (ParseException e) {
@@ -36,8 +37,10 @@ public class NovaEmpresaServlet extends HttpServlet {
 		
 		Banco.adiciona(empresa);
 		
-		request.setAttribute("empresa", nomeEmpresa);
-		RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriada.jsp");		
-		rd.forward(request, response);
+//		request.setAttribute("empresa", nomeEmpresa);
+//		RequestDispatcher rd = request.getRequestDispatcher("/listarEmpresas");		
+//		rd.forward(request, response);
+				
+		response.sendRedirect("listarEmpresas");
 	}		
 }
