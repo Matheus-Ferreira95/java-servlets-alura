@@ -1,8 +1,8 @@
 package br.com.zup.gerenciador.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +25,8 @@ public class NovaEmpresaServlet extends HttpServlet {
 				
 		Banco.adiciona(empresa);
 		
-		PrintWriter writer = response.getWriter();		
-		
-		writer.println("<html><body>Empresa " + nomeEmpresa + " cadastrada com sucesso</body></html>");		
+		request.setAttribute("empresa", nomeEmpresa);
+		RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriada.jsp");		
+		rd.forward(request, response);
 	}		
 }

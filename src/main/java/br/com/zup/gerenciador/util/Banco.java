@@ -11,7 +11,7 @@ public class Banco {
 	private static final List<Empresa> empresas = new ArrayList<>();
 	
 	static {
-		empresas.addAll(Arrays.asList(new Empresa(0, "ZUP"), new Empresa(1, "Alura"), new Empresa(2, "Google")));
+		empresas.addAll(Arrays.asList(new Empresa(0, "ZUP"), new Empresa(1, "Alura"), new Empresa(2, "Facebook")));
 	}
 
 	public static void adiciona(Empresa empresa) {

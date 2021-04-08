@@ -1,9 +1,9 @@
 package br.com.zup.gerenciador.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,14 +19,9 @@ public class ListaEmpresasServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Empresa> empresas = Banco.getEmpresas();
-		PrintWriter writer = response.getWriter();	
-		
-		writer.println("<html><body>");
-		writer.println("<ul>");
-		for (Empresa empresa : empresas) {			
-			writer.println("<li> " + empresa.getNome()+ " </li>");		
-		}
-		writer.println("</ul>");
-		writer.println("</body></html>");
+				
+		request.setAttribute("empresas", empresas);
+		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
+		rd.forward(request, response);
 	}
 }
